@@ -1,6 +1,6 @@
 Bundle 'basilgor/vim-autotags'
 Bundle 'brookhong/cscope.vim'
-Bundle 'vim-scripts/Mark--Karkat'
+Bundle 'jakpam/Mark--Karkat'
 Bundle 'stefandtw/quickfix-reflector.vim'
 Bundle 'kien/tabman.vim'
 Bundle 'kien/rainbow_parentheses.vim'
