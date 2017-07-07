@@ -7,10 +7,3 @@ endif
 " Enable powerline symbols
 let g:airline_powerline_fonts = 1
 
-" Prevent automatically changing to open file directory
-let g:spf13_no_autochdir = 1
-
-
-
-
-
