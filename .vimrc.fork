@@ -1,27 +1,134 @@
 set t_Co=256
 
-" Tabularize {
-    if isdirectory(expand("~/.vim/bundle/cscope.vim"))
+    " incsearch {
+        if isdirectory(expand("~/.vim/bundle/incsearch.vim/"))
+            map /  <Plug>(incsearch-forward)
+            map ?  <Plug>(incsearch-backward)
+            map g/ <Plug>(incsearch-stay)
+        endif
+    "}
 
-        nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-        nnoremap <leader>l :call ToggleLocationList()<CR>
+    " incsearch-fuzzy {
+        if isdirectory(expand("~/.vim/bundle/incsearch-fuzzy.vim/"))
+            map z/ <Plug>(incsearch-fuzzy-/)
+            map z? <Plug>(incsearch-fuzzy-?)
+            map zg/ <Plug>(incsearch-fuzzy-stay)
+        endif
+    "}
 
-        " s: Find this C symbol
-        nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
-        " g: Find this definition
-        nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
-        " d: Find functions called by this function
-        nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
-        " c: Find functions calling this function
-        nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
-        " t: Find this text string
-        nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
-        " e: Find this egrep pattern
-        nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
-        " f: Find this file
-        nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
-        " i: Find files #including this file
-        nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
-    endif
-" }
+    " incsearch-easymotion {
+        if isdirectory(expand("~/.vim/bundle/incsearch-easymotion.vim/"))
+            map e/ <Plug>(incsearch-easymotion-/)
+            map e? <Plug>(incsearch-easymotion-?)
+            map eg/ <Plug>(incsearch-easymotion-stay)
+            nmap <C-a> <ESC>:A<CR>
+        endif
+    "}
+
+    " a {
+        if isdirectory(expand("~/.vim/bundle/a.vim/"))
+            nmap <C-a> <ESC>:A<CR>
+        endif
+    "}
+
+    " cscope_dynamic {
+        if isdirectory(expand("~/.vim/bundle/cscope_dynamic/"))
+            nmap <F12> <Plug>CscopeDBInit
+
+            "let g:cscopedb_big_file=                    "Sets the name and location of the big cscope DB.
+
+            "let g:cscopedb_small_file=                  "Sets the name and location of the small cscope DB.
+
+            "let g:cscopedb_auto_init=                   "If true, auto init cscope_dynamic if the DB
+                                                        ""g:cscopedb_big_file already exists.
+
+            "let g:cscopedb_extra_files=                 "A file with a list of files for cscope_dynamic to
+                                                        ""pass to cscope. Can be used to index "out of tree"
+                                                        ""source code. Or can be used with
+                                                        ""g:cscopedb_auto_files = 0 if you don't want
+                                                        ""cscope_dynamic to automatically find source code.
+                                                        ""May also be useful if you want to pass absolute
+                                                        ""path names to cscope.
+
+            "let g:cscopedb_src_dirs_file=               "This is a file with a list of directories - one per
+                                                        ""line. The auto init searches source code files in
+                                                        ""the directories listed. If this file does not
+                                                        ""exist, the current directory will be used.
+
+            "let g:cscopedb_auto_files=                  "If true, automatically find source code relative
+                                                        ""to the current working directory.
+
+            "let g:cscopedb_resolve_links=               "Resolve symlinks for files passed to cscope.
+                                                        ""Defaults is true. Set to 0 or false if you don't
+                                                        ""want links resolved.
+
+            "let g:cscopedb_lock_file=                   "Location of lock file. Lock file is used to wait
+                                                        ""for cscope to finish its work before requesting
+                                                        ""it to do more work.
+
+            "let g:cscopedb_big_min_interval=            "Minimal interval between big database updates.
+                                                        ""Big DB updates can be expensive. This tames the
+                                                        ""scenario where you may make changes to many files
+                                                        ""in a short window.
+        endif
+    "}
+
+    " COMMENT.vim--Crawford {
+        if isdirectory(expand("~/.vim/bundle/COMMENT.vim--Crawford/"))
+            map <unique> <leader>if <Plug>PComment
+        endif
+    "}
+
+    " kickass-syntax-vim {
+        if isdirectory(expand("~/.vim/bundle/kickass-syntax-vim/"))
+            autocmd BufRead *.kickass set filetype=kickass
+        endif
+    "}
+
+    " To do the first type of search, hit 'CTRL-\', followed by one of the
+    " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
+    " search will be displayed in the current window.  You can use CTRL-T to
+    " go back to where you were before the search.  
+    "
+
+    nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+    nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+
+    " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
+    " makes the vim window split horizontally, with search result displayed in
+    " the new window.
+    "
+    " (Note: earlier versions of vim may not have the :scs command, but it
+    " can be simulated roughly via:
+    "    nmap <C-@>s <C-W><C-S> :cs find s <C-R>=expand("<cword>")<CR><CR>	
+
+    nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
+    nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+    nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
+
+    " Hitting CTRL-space *twice* before the search type does a vertical 
+    " split instead of a horizontal one (vim 6 and up only)
+    "
+    " (Note: you may wish to put a 'set splitright' in your .vimrc
+    " if you prefer the new window on the right instead of the left
+
+    nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
+    nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+    nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
