@@ -11,3 +11,6 @@ Bundle 'vim-scripts/a.vim'
 Bundle 'vim-scripts/COMMENT.vim--Crawford'
 Bundle 'gryf/kickass-syntax-vim'
 Bundle 'morhetz/gruvbox'
+
+UnBundle 'altercation/vim-colors-solarized'
+
