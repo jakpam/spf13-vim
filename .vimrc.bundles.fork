@@ -11,6 +11,9 @@ Bundle 'vim-scripts/a.vim'
 Bundle 'vim-scripts/COMMENT.vim--Crawford'
 Bundle 'gryf/kickass-syntax-vim'
 Bundle 'morhetz/gruvbox'
+Bundle 'Xuyuanp/nerdtree-git-plugin'
+Bundle 'jeaye/color_coded'
+Bundle 'rdnetto/YCM-Generator'
 
 UnBundle 'altercation/vim-colors-solarized'
 
